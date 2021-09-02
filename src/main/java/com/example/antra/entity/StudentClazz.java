@@ -1,5 +1,7 @@
 package com.example.antra.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -13,11 +15,11 @@ public class StudentClazz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "s_id")
     private Student student;
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "c_id")
     private Clazz clazz;
@@ -50,8 +52,8 @@ public class StudentClazz {
     public String toString() {
         return "StudentClazz{" +
                 "id='" + id + '\'' +
-                ", student=" + student +
-                ", clazz=" + clazz +
+                ", student=" + student.getId() + ", " + student.getName() +
+                ", clazz=" + clazz.getId() + ", " + clazz.getName() +
                 '}';
     }
 }

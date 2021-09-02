@@ -1,5 +1,7 @@
 package com.example.antra.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Student {
     private Long id;
     @Column(name = "name")
     private String name;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<StudentClazz> studentClazzList = new ArrayList<>();
 
